@@ -29,8 +29,14 @@ def is_vacant(which_hotel, which_room):
 		return False
 
 def check_in(which_hotel, which_room, new_guest):
-	if (is_vacant(which_hotel, which_room)):
+	if is_vacant(which_hotel, which_room):
 		which_hotel[which_room]['guest'] = new_guest
+
+def check_out(which_hotel, which_room):
+	if not is_vacant(which_hotel, which_room):
+		guest = which_hotel[which_room]['guest']
+		which_hotel[which_room] = EMPTY_ROOM
+		return guest
 
 def print_status(which_hotel):
 
@@ -50,4 +56,8 @@ guest = {
 	'prepaid': True
 }
 check_in(hotel, '103', guest)
+print_status(hotel)
+
+another_guest = check_out(hotel, '101')
+print(another_guest)
 print_status(hotel)
