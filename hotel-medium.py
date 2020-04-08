@@ -75,12 +75,13 @@ def print_status(which_hotel):
 def create_guest():
     name = input('Guest name: ')
     phone = input('Guest phone: ')
-    prepay_str = input('Prepay? (y or n)')
-    prepay_str = prepay_str.lowe()
+    prepay_str = input('Prepay? (y or n) ')
+    prepay_str = prepay_str.lower()
     if prepay_str == 'y':
         prepaid = True
     else:
         prepaid = False
+
     guest = {
         'name': name,
         'phone': phone,
@@ -94,6 +95,7 @@ main_menu = '''
 3. Check out customer
 4. Quit
 '''
+
 while True:
     menu_choice = int(input(main_menu))
     if menu_choice == 1:
@@ -105,18 +107,33 @@ while True:
             hotel_id = int(input('Which hotel? '))
             try:
                 hotel = hotels[hotel_id]
+                break
             except IndexError:
                 print('Invalid hotel id')
-        while True
+        while True:
             room_number = input('Which room number?')
             try:
                 if is_vacant(hotel, room_number):
-                    check_in(hotel, guest)
+                    check_in(hotel, room_number, guest)
                     break
             except KeyError:
                 print('Invalid room number')
     elif menu_choice == 3:
-        pass                
+        while True:            
+            hotel_id = int(input('Which hotel? '))
+            try:
+                hotel = hotels[hotel_id]
+                break
+            except IndexError:
+                print('Invalid hotel id')
+        while True:
+            room_number = input('Which room number?')
+            try:
+                guest = check_out(hotel, room_number)
+                print(f'{guest["name"]} has checked out\n\n')
+                break
+            except KeyError:
+                print('Invalid room number')            
 
     elif menu_choice == 4:
         break

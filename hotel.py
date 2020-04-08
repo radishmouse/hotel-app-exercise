@@ -7,7 +7,7 @@ hotel = {
         'guest': {
             'name': 'Elliot Alderson',
             'phone': 8675309,
-	   'prepaid': True,
+            'prepaid': True,
         }
     },
     '102': {},
@@ -16,7 +16,7 @@ hotel = {
         'guest': {
             'name': 'Darlene Alderson',
             'phone': 4567890,
-	   'prepaid': False
+	        'prepaid': False
         }
     },
     '105': {},
@@ -62,8 +62,9 @@ guest = {
 	'prepaid': True
 }
 check_in(hotel, '103', guest)
+# hotel['103']['guest'] = guest
 print_status(hotel)
 input()
 another_guest = check_out(hotel, '101')
-print(f'{another_guest["name"]} has checkd out\n\n')
+print(f'{another_guest["name"]} has checked out\n\n')
 print_status(hotel)
