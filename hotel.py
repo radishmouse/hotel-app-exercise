@@ -28,17 +28,26 @@ def is_vacant(which_hotel, which_room):
 	else:
 		return False
 
-# Printing the room status
-for room_number in hotel.keys():
-    # The room_number variable will be a 
-    # string, like '101' or '103'
-    if is_vacant(hotel, room_number):
-        print(f'{room_number} is vacant')
-    else:
-        print(f'{room_number} is occupied by {hotel[room_number]["guest"]["name"]}')
+def check_in(which_hotel, which_room, new_guest):
+	if (is_vacant(which_hotel, which_room)):
+		which_hotel[which_room]['guest'] = new_guest
 
-# For any one room, you should store:
-# - occupant name
-# - phone number
-# - has prepaid
+def print_status(which_hotel):
 
+	# Printing the room status
+	for room_number in which_hotel.keys():
+	    # The room_number variable will be a 
+ 	   # string, like '101' or '103'
+  	  if is_vacant(which_hotel, room_number):
+  	      print(f'{room_number} is vacant')
+  	  else:
+  	     print(f'{room_number} is occupied by {which_hotel[room_number]["guest"]["name"]}')
+
+print_status(hotel)
+guest = {
+	'name': 'Angela Moss',
+	'phone': '333-3333',
+	'prepaid': True
+}
+check_in(hotel, '103', guest)
+print_status(hotel)
