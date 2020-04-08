@@ -39,17 +39,23 @@ def check_out(which_hotel, which_room):
 		return guest
 
 def print_status(which_hotel):
+    # Printing the room status
+    print('-----------------------------------')
+    print('----------- hotel status ----------')
+    print('-----------------------------------')
+    for room_number in which_hotel.keys():
+        # The room_number variable will be a 
+        # string, like '101' or '103'
+        if is_vacant(which_hotel, room_number):
+            print(f'{room_number} is vacant')
+        else:
+            print(f'{room_number} is occupied by {which_hotel[room_number]["guest"]["name"]}')
 
-	# Printing the room status
-	for room_number in which_hotel.keys():
-	    # The room_number variable will be a 
- 	   # string, like '101' or '103'
-  	  if is_vacant(which_hotel, room_number):
-  	      print(f'{room_number} is vacant')
-  	  else:
-  	     print(f'{room_number} is occupied by {which_hotel[room_number]["guest"]["name"]}')
+    print('-----------------------------------')
+    print('\n\n')
 
 print_status(hotel)
+input()
 guest = {
 	'name': 'Angela Moss',
 	'phone': '333-3333',
@@ -57,7 +63,7 @@ guest = {
 }
 check_in(hotel, '103', guest)
 print_status(hotel)
-
+input()
 another_guest = check_out(hotel, '101')
-print(another_guest)
+print(f'{another_guest["name"]} has checkd out\n\n')
 print_status(hotel)
